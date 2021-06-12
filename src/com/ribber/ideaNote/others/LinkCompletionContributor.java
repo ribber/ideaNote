@@ -5,6 +5,8 @@ import com.intellij.codeInsight.lookup.LookupElement;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.patterns.StandardPatterns;
+import com.intellij.patterns.StringPattern;
 import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.util.ProcessingContext;
@@ -29,11 +31,11 @@ public class LinkCompletionContributor extends CompletionContributor {
                         Collection<VirtualFile> virtualFiles = FileTypeIndex.getFiles(MarkdownFileType.INSTANCE, GlobalSearchScope.projectScope(current));
                         LinkInsertHandler<LookupElement> linkInsertHandler = new LinkInsertHandler<>();
                         for(VirtualFile virtualFile : virtualFiles) {
-                            if(virtualFile.getName().contains(key)) {
+                            if(virtualFile.getName().toLowerCase().contains(key.toLowerCase())) {
                                 String ext = virtualFile.getExtension();
                                 String name = virtualFile.getName().replace("." + ext, "");
                                 String relativePath = VcsFileUtil.relativePath(currentFile, virtualFile).replaceFirst("../", "");
-                                resultSet.addElement(LookupElementBuilder.create(name, relativePath).withInsertHandler(linkInsertHandler));
+                                resultSet.addElement(LookupElementBuilder.create(name, relativePath).withInsertHandler(linkInsertHandler).withCaseSensitivity(false));
                             }
 
                         }

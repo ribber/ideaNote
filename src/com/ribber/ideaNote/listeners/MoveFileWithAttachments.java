@@ -1,9 +1,16 @@
 package com.ribber.ideaNote.listeners;
 
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.newvfs.BulkFileListener;
 import com.intellij.openapi.vfs.newvfs.events.VFileEvent;
 import com.intellij.openapi.vfs.newvfs.events.VFileMoveEvent;
+import com.intellij.psi.PsiDirectory;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
+import com.intellij.refactoring.RefactoringSettings;
+import com.intellij.refactoring.move.moveFilesOrDirectories.MoveFilesOrDirectoriesProcessor;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -45,10 +52,22 @@ public class MoveFileWithAttachments implements BulkFileListener {
                         newAttachDir = newParent.createChildDirectory(vFileEvent.getRequestor(), pathFragment[0]);
                     }
 
-                    attachmentFile.move(vFileEvent.getRequestor(), newAttachDir);
+                    Project currentProject = null;
+                    for(Project project : ProjectManager.getInstance().getOpenProjects()){
+                        if(newParent.getPath().startsWith(project.getBasePath()))
+                            currentProject = project;
+                    }
+                    PsiManager psiManager = PsiManager.getInstance(currentProject);
+                    PsiFile psiFile = psiManager.findFile(attachmentFile);
+                    PsiDirectory psiDir = psiManager.findDirectory(newAttachDir);
+                    PsiFile[] a = {psiFile};
+                    new MoveFilesOrDirectoriesProcessor(currentProject, a, psiDir,
+                            RefactoringSettings.getInstance().MOVE_SEARCH_FOR_REFERENCES_FOR_FILE,
+                            false, true, null, null).run();
+                    //attachmentFile.move(vFileEvent.getRequestor(), newAttachDir);
 
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

@@ -28,6 +28,14 @@
 
   <actions>
     <!-- Add your actions here -->
+    <action id="com.ribber.ideaNote.NoteExtract" class="com.ribber.ideaNote.actions.NoteExtractAction"
+            text="NoteExtract" description="Extract selected text as a new Markdown file">
+      <add-to-group group-id="Markdown.Toolbar.Left" anchor="last"/>
+    </action>
+    <action id="com.ribber.ideaNote.randomOpenNote" class="com.ribber.ideaNote.actions.RandomOpenNoteAction"
+            text="RandomOpenNote" description="Random Open Markdown Note">
+      <add-to-group group-id="ProjectViewToolbar" anchor="last"/>
+    </action>
   </actions>
 
 </idea-plugin>
