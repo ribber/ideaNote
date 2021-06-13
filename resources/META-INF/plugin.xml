@@ -1,6 +1,6 @@
 <idea-plugin>
   <id>com.ribber.ideaNote</id>
-  <name>ideaNote</name>
+  <name>IdeaNote</name>
   <version>0.1</version>
   <vendor email="569894874@qq.com" url="http://ribber.github.com">ribber</vendor>
 
@@ -10,11 +10,11 @@
 
       feature
       <ul>
-        <li>move file to another directory，it's attachment will move too</li>
-        <li>input `[XXX]` auto complete note's relative path</li>
-        <li>extract selected text to a new note，and leave a link</li>
-        <li>find all unlink file</li>
-        <li>random open a note </li>
+        <li>If note's attachment is in the subdirectory belong the note, move the note to another directory，it's attachment will move too</li>
+        <li>When input `[XXX]`, will pop up hint to note, select one can auto complete note's relative path</li>
+        <li>Add a button in Markdown file editor,click it can extract selected text to a new note and leave a link</li>
+        <li>Add an Action named "Find unlink file", find all file which hasn't another file link it</li>
+        <li>Add a button in Project Tool Window，click it can open a note randomly</li>
       </ul>
     ]]>
   </description>
