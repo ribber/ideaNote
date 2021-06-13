@@ -4,7 +4,20 @@
   <version>0.1</version>
   <vendor email="569894874@qq.com" url="http://ribber.github.com">ribber</vendor>
 
-  <description>Use IDEA as markdown note software like Obsidian</description>
+  <description>
+    <![CDATA[
+      Use IDEA as markdown note software like Obsidian
+
+      feature
+      <ul>
+        <li>move file to another directory，it's attachment will move too</li>
+        <li>input `[XXX]` auto complete note's relative path</li>
+        <li>extract selected text to a new note，and leave a link</li>
+        <li>find all unlink file</li>
+        <li>random open a note </li>
+      </ul>
+    ]]>
+  </description>
 
   <change-notes></change-notes>
 
@@ -18,7 +31,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <completion.contributor language="Markdown"
-                            implementationClass="com.ribber.ideaNote.others.LinkCompletionContributor"/>
+                            implementationClass="com.ribber.ideaNote.extensions.LinkCompletionContributor"/>
   </extensions>
 
   <applicationListeners>
@@ -29,12 +42,15 @@
   <actions>
     <!-- Add your actions here -->
     <action id="com.ribber.ideaNote.NoteExtract" class="com.ribber.ideaNote.actions.NoteExtractAction"
-            text="NoteExtract" description="Extract selected text as a new Markdown file">
+            text="Note Extract" description="Extract selected text as a new Markdown file" icon="/icons/extractNote.svg">
       <add-to-group group-id="Markdown.Toolbar.Left" anchor="last"/>
     </action>
     <action id="com.ribber.ideaNote.randomOpenNote" class="com.ribber.ideaNote.actions.RandomOpenNoteAction"
-            text="RandomOpenNote" description="Random Open Markdown Note">
+            text="Random Open Note" description="Random open markdown note" icon="/icons/randomOpen.svg">
       <add-to-group group-id="ProjectViewToolbar" anchor="last"/>
+    </action>
+    <action id="com.ribber.ideaNote.findUnlinkFile" class="com.ribber.ideaNote.actions.FindUnlinkFileAction"
+            text="Find Unlink File" description="Find unlink file">
     </action>
   </actions>
 
