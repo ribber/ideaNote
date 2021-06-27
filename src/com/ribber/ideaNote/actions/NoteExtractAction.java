@@ -18,6 +18,7 @@ public class NoteExtractAction extends AnAction {
         WriteCommandAction.runWriteCommandAction(e.getProject(), () -> {
             try {
                 Editor editor = e.getData(CommonDataKeys.EDITOR);
+                if(editor == null) return;
                 SelectionModel selectionModel = editor.getSelectionModel();
                 String selectedText = selectionModel.getSelectedText();
                 String firstLine = selectedText.substring(0, selectedText.indexOf("\n"));

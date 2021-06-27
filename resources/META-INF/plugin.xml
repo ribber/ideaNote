@@ -52,6 +52,10 @@
     <action id="com.ribber.ideaNote.findUnlinkFile" class="com.ribber.ideaNote.actions.FindUnlinkFileAction"
             text="Find Unlink File" description="Find unlink file">
     </action>
+    <action id="com.ribber.ideaNote.AddMarkdownLink" class="com.ribber.ideaNote.actions.AddMarkdownLinkAction"
+            text="Add Markdown Link" description="Add Markdown link to find result" icon="/icons/addLink.svg">
+      <add-to-group group-id="UsageView.Popup" anchor="last"/>
+    </action>
   </actions>
 
 </idea-plugin>

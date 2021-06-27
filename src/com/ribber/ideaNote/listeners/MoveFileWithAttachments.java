@@ -27,7 +27,6 @@ public class MoveFileWithAttachments implements BulkFileListener {
             if (!(vFileEvent instanceof VFileMoveEvent)) continue;
             VFileMoveEvent vFileMoveEvent = (VFileMoveEvent) vFileEvent;
             VirtualFile virtualFile = vFileMoveEvent.getFile();
-            if (virtualFile == null) continue;
             String newPath = vFileMoveEvent.getNewPath();
             if (!newPath.endsWith(".md")) continue;
             try {
@@ -64,7 +63,6 @@ public class MoveFileWithAttachments implements BulkFileListener {
                     new MoveFilesOrDirectoriesProcessor(currentProject, a, psiDir,
                             RefactoringSettings.getInstance().MOVE_SEARCH_FOR_REFERENCES_FOR_FILE,
                             false, true, null, null).run();
-                    //attachmentFile.move(vFileEvent.getRequestor(), newAttachDir);
 
                 }
             } catch (Exception e) {

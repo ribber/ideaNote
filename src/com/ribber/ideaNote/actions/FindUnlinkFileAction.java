@@ -25,6 +25,7 @@ public class FindUnlinkFileAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         Project currentProject = e.getData(CommonDataKeys.PROJECT);
+        if(currentProject == null) return;
         VirtualFile root = ProjectRootManager.getInstance(currentProject).getContentRoots()[0];
         List<VirtualFile> unlinkFileList = new ArrayList<>();
         VfsUtilCore.iterateChildrenRecursively(root, file -> {

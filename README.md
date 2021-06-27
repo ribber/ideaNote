@@ -9,3 +9,4 @@ feature
 - [x] Add a button in Markdown file editor,click it can extract selected text to a new note and leave a link
 - [x] Add an Action named "Find unlink file", find all file which hasn't another file link it
 - [x] Add a button in Project Tool Window，click it can open a note randomly
+- [x] Add a context menu item in Find Tool Window, So You can add Markdown file link to find result
